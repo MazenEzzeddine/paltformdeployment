@@ -1,0 +1,37 @@
+          apiVersion: v1
+          kind: Pod
+          metadata:
+              labels:
+                app: grpcassignmentserver
+              name: controllerandscaler
+          spec:
+                restartPolicy: Never
+                containers:
+                  - name: controllerandscaler
+                    #image: docker.io/mezzeddine/controllerteshrine:v0
+                    #image: docker.io/mezzeddine/controllerteshrine:vd6
+                    #image: docker.io/mezzeddine/controllerteshrine:vd33
+                    image: docker.io/mezzeddine/controlleralgo1:v0 #controllercustomer:v0
+
+
+
+
+                    ports:
+                    - containerPort: 5002
+                    env:
+                    - name: BOOTSTRAP_SERVERS
+                      value: my-cluster-kafka-bootstrap:9092
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: assignmentservice #arrivalservice #assignmentservice
+spec:
+  selector:
+        app: grpcassignmentserver
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002
