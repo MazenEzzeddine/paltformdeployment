@@ -1,0 +1,96 @@
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   labels:
+#     app: workload
+#   name: workload
+# spec:
+#   restartPolicy: Never
+#   containers:
+#     - name: java-kafka-producer
+#       image: docker.io/mezzeddine/producerftest:v0  #produceroldgrpc:v1
+#       #image: docker.io/mezzeddine/omgrpc:v3
+#       #image: docker.io/mezzeddine/producertaxigrpc:v1
+#       env:
+#         - name: BOOTSTRAP_SERVERS
+#           value: my-cluster-kafka-bootstrap:9092
+#         - name: TOPIC
+#           value: testtopic1
+#         - name: DELAY_MS
+#           value: "1000"
+#         - name: LOG_LEVEL
+#           value: "INFO"
+#         - name: PRODUCER_ACKS
+#           value: "0"
+#         - name: ADDITIONAL_CONFIG
+#           value: |
+#                 retries=100
+# ---
+#           apiVersion: v1
+#           kind: Pod
+#           metadata:
+#               labels:
+#                 app: grpcassignmentserver
+#               name: controllerandscaler
+#           spec:
+#                 restartPolicy: Never
+#                 containers:
+#                   - name: controllerandscaler
+#                     image: docker.io/mezzeddine/controllerftest:v0 #controllerms:v66 # 0.9, 0.4 sur
+#                     ports:
+#                     - containerPort: 5002
+#                     env:
+#                     - name: BOOTSTRAP_SERVERS
+#                       value: my-cluster-kafka-bootstrap:9092
+
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: assignmentservice #arrivalservice #assignmentservice
+# spec:
+#   selector:
+#         app: workload
+#   ports:
+#     - protocol: TCP
+#       port: 5002
+#       targetPort: 5002
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: latency
+  name: latency
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: latency
+  template:
+    metadata:
+      labels:
+        app: latency
+    spec:
+      containers:
+        - name: latency
+          image: docker.io/mezzeddine/consumereventssticky:v0 #consumerbinpacktest:v0 ##consumerftest:vO #consumer500h:v0 # 500
+          ports:
+          - containerPort: 8080
+            name: brom          
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: my-cluster-kafka-bootstrap:9092
+            - name: TOPIC
+              value: testtopic1
+            - name: GROUP_ID
+              value: testgroup1
+            - name: SLEEP
+              value: "5"
+            - name: MESSAGE_COUNT
+              value: "1000000"
+            - name: ADDITIONAL_CONFIG
+              value: |
+                max.poll.records=500
+

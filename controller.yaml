@@ -11,7 +11,11 @@
                     #image: docker.io/mezzeddine/controllerteshrine:v0
                     #image: docker.io/mezzeddine/controllerteshrine:vd6
                     #image: docker.io/mezzeddine/controllerteshrine:vd33
-                    image: docker.io/mezzeddine/controlleralgo1:v0 #controllercustomer:v0
+                    #image: docker.io/mezzeddine/controlleralgo1:v10 #controllercustomer:v0 OK
+                    #image: docker.io/mezzeddine/controlleralgo1:v11 #controllercustomer:v0 OK
+                    image: docker.io/mezzeddine/controlleralgo1:v12 #controllercustomer:v0 OK
+
+
 
 
 
