@@ -48,7 +48,9 @@ spec:
         - name: latency
           #image: docker.io/mezzeddine/consumerteshrine:v0
           #image: docker.io/mezzeddine/consumerteshrine:v1  #sk
-          image: docker.io/mezzeddine/consumerrebalgo1:v1 #consumercustomer:v0
+          #image: docker.io/mezzeddine/consumerrebalgo1:v1 #consumercustomer:v0
+          image: docker.io/mezzeddine/consumercustomer:v0
+
 
 
           ports:

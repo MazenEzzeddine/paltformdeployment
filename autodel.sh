@@ -5,10 +5,10 @@ kubectl delete -f 'https://strimzi.io/install/latest?namespace=default'
 
 kubectl delete -f prometheus-operator-deployment.yaml
 
-cd prometheus-additional-properties
+#cd prometheus-additional-properties
 kubectl delete -f prometheus-additional.yaml
-cd ..
-cd prometheus-install
+#cd ..
+#cd prometheus-install
 kubectl delete -f alert-manager.yaml
 kubectl delete -f prometheus-rules.yaml
 kubectl delete -f strimzi-pod-monitor.yaml
