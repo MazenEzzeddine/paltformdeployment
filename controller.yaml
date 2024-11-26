@@ -14,7 +14,22 @@
                     #image: docker.io/mezzeddine/controlleralgo1:v10 #controllercustomer:v0 OK
                     #image: docker.io/mezzeddine/controlleralgo1:v11 #controllercustomer:v0 OK
                     #image: docker.io/mezzeddine/controlleralgo1:v12 #controllercustomer:v0 OK This
-                    image: docker.io/mezzeddine/controlleralgo2:v0 #controlleralgo1:v12 #controllercustomer:v0 OK This
+                    #image: docker.io/mezzeddine/controlleralgo2:v0 #controlleralgo1:v12 #controllercustomer:v0 OK This
+                    #image: docker.io/mezzeddine/controlleralgo1:vv0
+                    #image: docker.io/mezzeddine/controlleralgo2500:v0
+                    #image: docker.io/mezzeddine/controlleralgo2corr:v1    controlleralgo2corr:vnr
+                    #image: docker.io/mezzeddine/controlleralgo2corr:vnr
+                    #image: docker.io/mezzeddine/controlleralgo2corr:vnr5
+                    #image: docker.io/mezzeddine/controlleralgo2corr:vnr200
+                    image: docker.io/mezzeddine/controllethelast:v0
+                    #image: docker.io/mezzeddine/controllethelast05:v0
+                    #image: docker.io/mezzeddine/controllethelast2:v0
+
+
+
+
+
+
 
                     ports:
                     - containerPort: 5002
