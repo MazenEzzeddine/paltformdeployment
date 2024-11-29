@@ -49,7 +49,7 @@ spec:
           #image: docker.io/mezzeddine/consumerteshrine:v0
           #image: docker.io/mezzeddine/consumerteshrine:v1  #sk
           #image: docker.io/mezzeddine/consumerrebalgo1:v1 #consumercustomer:v0
-          image: docker.io/mezzeddine/consumercustomer:v0
+          image: docker.io/mezzeddine/consumercustomer:v0  #bp
           #image: docker.io/mezzeddine/consumer500sticky:v0
           #image: docker.io/mezzeddine/consumer2000sticky:v1
           #image: docker.io/mezzeddine/consumer2000sbp:v1

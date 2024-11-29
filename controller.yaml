@@ -21,9 +21,18 @@
                     #image: docker.io/mezzeddine/controlleralgo2corr:vnr
                     #image: docker.io/mezzeddine/controlleralgo2corr:vnr5
                     #image: docker.io/mezzeddine/controlleralgo2corr:vnr200
-                    image: docker.io/mezzeddine/controllethelast:v0
+                    #image: docker.io/mezzeddine/controllethelast:v0
                     #image: docker.io/mezzeddine/controllethelast05:v0
                     #image: docker.io/mezzeddine/controllethelast2:v0
+                    #image: docker.io/mezzeddine/controllerlag:v1
+                    #image: docker.io/mezzeddine/controllerlag2:v0
+                    #image: docker.io/mezzeddine/controllerlag05:v0
+                    #image: docker.io/mezzeddine/controllerwaitassign05:v0
+                    image: docker.io/mezzeddine/controllerwaitassign005:v0
+
+
+
+
 
 
 
