@@ -1,0 +1,65 @@
+          apiVersion: v1
+          kind: Pod
+          metadata:
+              labels:
+                app: grpcassignmentserver
+              name: controllerandscaler
+          spec:
+                restartPolicy: Never
+                containers:
+                  - name: controllerandscaler
+                    #image: docker.io/mezzeddine/controllerteshrine:v0
+                    #image: docker.io/mezzeddine/controllerteshrine:vd6
+                    #image: docker.io/mezzeddine/controllerteshrine:vd33
+                    #image: docker.io/mezzeddine/controlleralgo1:v10 #controllercustomer:v0 OK
+                    #image: docker.io/mezzeddine/controlleralgo1:v11 #controllercustomer:v0 OK
+                    #image: docker.io/mezzeddine/controlleralgo1:v12 #controllercustomer:v0 OK This
+                    #image: docker.io/mezzeddine/controlleralgo2:v0 #controlleralgo1:v12 #controllercustomer:v0 OK This
+                    #image: docker.io/mezzeddine/controlleralgo1:vv0
+                    #image: docker.io/mezzeddine/controlleralgo2500:v0
+                    #image: docker.io/mezzeddine/controlleralgo2corr:v1    controlleralgo2corr:vnr
+                    #image: docker.io/mezzeddine/controlleralgo2corr:vnr
+                    #image: docker.io/mezzeddine/controlleralgo2corr:vnr5
+                    #image: docker.io/mezzeddine/controlleralgo2corr:vnr200
+                    #image: docker.io/mezzeddine/controllethelast:v0
+                    #image: docker.io/mezzeddine/controllethelast05:v0
+                    #image: docker.io/mezzeddine/controllethelast2:v0
+                    #image: docker.io/mezzeddine/controllerlag:v1
+                    #image: docker.io/mezzeddine/controllerlag2:v0
+                    #image: docker.io/mezzeddine/controllerlag05:v0
+                    #image: docker.io/mezzeddine/controllerwaitassign05:v0
+                    #image: docker.io/mezzeddine/controllerwaitassign005:v0
+                    #image: docker.io/mezzeddine/controller10:v3
+                    image: docker.io/mezzeddine/controller10bpstate:v1
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    ports:
+                    - containerPort: 5002
+                    env:
+                    - name: BOOTSTRAP_SERVERS
+                      value: my-cluster-kafka-bootstrap:9092
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: assignmentservice #arrivalservice #assignmentservice
+spec:
+  selector:
+        app: grpcassignmentserver
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002

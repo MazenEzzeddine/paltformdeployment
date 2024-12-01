@@ -29,12 +29,12 @@ spec:
       min.insync.replicas: 2
       inter.broker.protocol.version: "3.6"
     storage:
-      type: jbod
-      volumes:
-      - id: 0
-        type: persistent-claim
-        size: 20Gi
-        deleteClaim: false
+      type: ephemeral #jbod
+#      volumes:
+#      - id: 0
+#        type: persistent-claim
+#        size: 20Gi
+#        deleteClaim: false
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -50,9 +50,9 @@ spec:
       initialDelaySeconds: 15
       timeoutSeconds: 5
     storage:
-      type: persistent-claim
-      size: 3Gi
-      deleteClaim: false
+      type: ephemeral #persistent-claim
+#      size: 3Gi
+#      deleteClaim: false
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
