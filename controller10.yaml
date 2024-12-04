@@ -30,7 +30,8 @@
                     #image: docker.io/mezzeddine/controllerwaitassign05:v0
                     #image: docker.io/mezzeddine/controllerwaitassign005:v0
                     #image: docker.io/mezzeddine/controller10:v3
-                    image: docker.io/mezzeddine/controller10bpstate:v1
+                    #image: docker.io/mezzeddine/controller10bpstate:v1
+                    image: docker.io/mezzeddine/controller10bpstate:v3
 
 
 

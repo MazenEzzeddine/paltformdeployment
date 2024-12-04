@@ -8,15 +8,7 @@ spec:
   restartPolicy: Never
   containers:
     - name: java-kafka-producer
-      #image: docker.io/mezzeddine/producerftest:v0  #produceroldgrpc:v1
-      #image: docker.io/mezzeddine/omgrpc:v3
-      #image: docker.io/mezzeddine/producertaxigrpc:v1
-      #image: docker.io/mezzeddine/produceroldgrpc:v1
-      #image: docker.io/mezzeddine/taxiproducernew:v2
-      image: docker.io/mezzeddine/taxiproducernew:v3
-
-
-
+      image: docker.io/mezzeddine/twitterproducer:v1  #taxiproducernew:v3
       env:
         - name: BOOTSTRAP_SERVERS
           value: my-cluster-kafka-bootstrap:9092
@@ -39,7 +31,7 @@ metadata:
     app: latency
   name: latency
 spec:
-  replicas: 10
+  replicas: 2
   selector:
     matchLabels:
       app: latency
@@ -50,27 +42,15 @@ spec:
     spec:
       containers:
         - name: latency
-          #image: docker.io/mezzeddine/consumerteshrine:v0
-          #image: docker.io/mezzeddine/consumerteshrine:v1  #sk
-          #image: docker.io/mezzeddine/consumerrebalgo1:v1 #consumercustomer:v0
-          #image: docker.io/mezzeddine/consumercustomer:v0  #bp
-          #image: docker.io/mezzeddine/consumer500sticky:v0
-          #image: docker.io/mezzeddine/consumer2000sticky:v1
-          #image: docker.io/mezzeddine/consumer2000sbp:v1
-          #image: docker.io/mezzeddine/consumereventssticky:v0
-          #image: docker.io/mezzeddine/consumersti:v0
-          image: docker.io/mezzeddine/consumerbp:v00
 
+          #image: docker.io/mezzeddine/twittertopo:v9 #consumerbp:v00
 
-
-
-
-
+          image: docker.io/mezzeddine/twittertopo:v10 #consumerbp:v00
 
 
           ports:
           - containerPort: 8080
-            name: brom          
+            name: brom
           env:
             - name: BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9092
