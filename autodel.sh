@@ -12,7 +12,9 @@ kubectl delete -f prometheus-additional.yaml
 kubectl delete -f alert-manager.yaml
 kubectl delete -f prometheus-rules.yaml
 kubectl delete -f strimzi-pod-monitor.yaml
-kubectl delete -f prometheustt.yaml
+kubectl delete -f prometheusttt.yaml
+
+kubectl delete -f grafana.yaml
 
 
 #  kubectl wait --for=condition=Ready deploy/strimzi-cluster-operator

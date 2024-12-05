@@ -93,6 +93,14 @@ spec:
 
           image: docker.io/mezzeddine/interceptordist23:v00
 
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+
 
 
           ports:
@@ -169,10 +177,26 @@ metadata:
 spec:
   restartPolicy: Never
   containers:
+
     - name: controllerandscaler
       #image: docker.io/mezzeddine/controllergraphbf:v1
       #image: docker.io/mezzeddine/controllergraphbf:v2
-      image: docker.io/mezzeddine/controllergraphbf:v3
+      #image: docker.io/mezzeddine/controllergraphbf:v3
+      #image: docker.io/mezzeddine/controllergraphbf:v4
+      #image: docker.io/mezzeddine/controllergraphbf:v7
+      #image: docker.io/mezzeddine/controllergraphbf:v8
+      image: docker.io/mezzeddine/controllergraphbf:v9  # fup=1
+
+      resources:
+        requests:
+          cpu: 500m
+          memory: 500Mi
+        limits:
+          cpu: 500m
+          memory: 500Mi
+
+
+
 
 
       ports:

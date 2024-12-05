@@ -6,7 +6,7 @@ kubectl create -f 'https://strimzi.io/install/latest?namespace=default'
 #cd strimzi-kafka-operator
 #cd examples
 #cd metrics
-kubectl create -f kafka-metrics.yaml
+kubectl create -f kafka-metrics2.yaml
 
 kubectl wait --for=condition=Ready kafka/my-cluster --timeout=60s
 
