@@ -1,0 +1,36 @@
+ kubectl port-forward svc/order-svc-service 8080:8080
+
+
+ curl -s -X POST localhost:8080/addCustomer \
+   -H "Content-Type: application/json" \
+   -d '{"id": "foo", "companyName": "bar", "contactName": "2023-05-04"}'
+ {"contactTitle":"1","address":"foo","city":"bar","region":"2023-05-04",
+ "postalCode":"2023-05-04", "country":"2023-05-04", "phone":"2023-05-04", "fax":"2023-05-04"}
+
+
+ curl localhost:8080/api/v1/customers
+
+
+  curl -s -X POST localhost:8080/addCustomer    -H "Content-Type: application/json"    -d '{"customer_id": "foo", "companyName": "bar", "contactName": "2023-05-04", "contactTitle":"1","address":"foo","city":"bar","region":"2023
+ -05-04", "postalCode":"2023-05-04", "country":"2023-05-04", "phone":"2023-05-04", "fax":"2023-05-04"}'
+
+
+
+ curl -s -X POST localhost:8080/api/v1/addCustomer    -H "Content-Type: application/json"    -d '{"customer_id": "foo", "companyName": "bar",
+ "contactName": "2023-05-04",
+  "contactTitle":"1","address":"foo","city":"bar","region":"2023-05-04", "postalCode":"2023-05-04", "country":"2023-05-04",
+  "phone":"2023-05-04", "fax":"2023-05-04"}'
+
+
+
+  curl -s -X POST localhost:8080/api/v1/addCustomer    -H "Content-Type: application/json"    -d '{ "companyName": "bar", "contactName": "2023-05-04", "contactTitle":"1","address":"foo","city":"bar","region":"2023-05-04", "postalCode":"2023-05-04", "country":"2023-05-04", "phone":"2023-05-04", "fax":"2023-05-04"}'
+
+
+
+kubectl exec my-pod -- psql -U myuser -d mydb -c "SELECT * FROM users"
+
+
+ kubectl exec -it  postgresql-7655bd5b46-zd7sf  -- psql -U postgres -d northwind
+
+
+  gcloud logging read 'resource.type=k8s_container resource.labels.container_name=latency timestamp>="2024-11-19T09:35:08Z" textPayload:"latency is"' --format="csv[separator=', '](timestamp,textPayload, resource.labels.pod_name)" > uni.log

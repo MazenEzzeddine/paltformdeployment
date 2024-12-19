@@ -13,7 +13,11 @@ spec:
       #image: docker.io/mezzeddine/producertaxigrpc:v1
       #image: docker.io/mezzeddine/produceroldgrpc:v1
       #image: docker.io/mezzeddine/taxiproducernew:v2
-      image: docker.io/mezzeddine/taxiproducernew:v3
+      #image: docker.io/mezzeddine/taxiproducernew:v3   # this, batch
+      image: docker.io/mezzeddine/taxitimely:v0  #timely producer
+      #image: docker.io/mezzeddine/taxiuniform:v2  #timely producer
+
+
 
 
 

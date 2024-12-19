@@ -34,7 +34,9 @@
                     #image: docker.io/mezzeddine/controller10bpstate:v3  # this fd 0.4
                     #image: docker.io/mezzeddine/controller10fd2:v1
 
-                    image: docker.io/mezzeddine/controller10fd3:v0
+                    #image: docker.io/mezzeddine/controller10fd3:v0
+                    image: docker.io/mezzeddine/controller15fd2:v1
+
 
 
 
