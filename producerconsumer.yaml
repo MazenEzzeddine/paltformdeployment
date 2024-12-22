@@ -11,7 +11,13 @@ spec:
       #image: docker.io/mezzeddine/producerftest:v0  #produceroldgrpc:v1
       #image: docker.io/mezzeddine/omgrpc:v3
       #image: docker.io/mezzeddine/producertaxigrpc:v1
-      image: docker.io/mezzeddine/produceroldgrpc:v1
+      #image: docker.io/mezzeddine/produceroldgrpc:v1
+      #image: docker.io/mezzeddine/taxibatch40is:v0  #timely producer
+      #image: docker.io/mezzeddine/taxi2h1640:v3   #timely producer
+      image: docker.io/mezzeddine/taxi2h40:v0   #timely producer
+
+
+
 
       env:
         - name: BOOTSTRAP_SERVERS
@@ -35,7 +41,7 @@ metadata:
     app: latency
   name: latency
 spec:
-  replicas: 1
+  replicas: 7
   selector:
     matchLabels:
       app: latency
@@ -56,7 +62,11 @@ spec:
           #image: docker.io/mezzeddine/consumer750bp:v0
 
           #image: docker.io/mezzeddine/consumerpostgresvar:v6
-          image: docker.io/mezzeddine/consumerpostgresvar:vv0
+          #image: docker.io/mezzeddine/consumerpostgresvar:vv0
+          image: docker.io/mezzeddine/consumerbp:v00
+
+
+
 
 
 

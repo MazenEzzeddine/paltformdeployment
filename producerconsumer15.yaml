@@ -16,7 +16,7 @@ spec:
       #image: docker.io/mezzeddine/taxiproducernew:v3   # this, batch
       #image: docker.io/mezzeddine/taxitimely:v0  #timely producer
       #image: docker.io/mezzeddine/taxiuniform:v2  #timely producer
-      image: docker.io/mezzeddine/taxibatch100:v1
+      image: docker.io/mezzeddine/taxibatch100:v2 # 1 hr taxi 100n accelerated
 
 
 

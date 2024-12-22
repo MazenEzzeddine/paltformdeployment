@@ -34,3 +34,6 @@ kubectl exec my-pod -- psql -U myuser -d mydb -c "SELECT * FROM users"
 
 
   gcloud logging read 'resource.type=k8s_container resource.labels.container_name=latency timestamp>="2024-11-19T09:35:08Z" textPayload:"latency is"' --format="csv[separator=', '](timestamp,textPayload, resource.labels.pod_name)" > uni.log
+
+
+ gcloud logging read 'resource.type=k8s_container resource.labels.container_name=controllerandscaler timestamp>="2024-12-20T10:02:50Z"' --format="csv[separator=', '](timestamp,textPayload, resource.labels.pod_name)" > acc40latencycontroller.log
