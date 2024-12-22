@@ -13,8 +13,8 @@ spec:
       #image: docker.io/mezzeddine/producertaxigrpc:v1
       #image: docker.io/mezzeddine/produceroldgrpc:v1
       #image: docker.io/mezzeddine/taxibatch40is:v0  #timely producer
-      #image: docker.io/mezzeddine/taxi2h1640:v3   #timely producer
-      image: docker.io/mezzeddine/taxi2h40:v0   #timely producer
+      image: docker.io/mezzeddine/taxi2h1640:v3   #timely producer
+      #image: docker.io/mezzeddine/taxi2h40:v0   #timely producer
 
 
 
@@ -63,7 +63,9 @@ spec:
 
           #image: docker.io/mezzeddine/consumerpostgresvar:v6
           #image: docker.io/mezzeddine/consumerpostgresvar:vv0
-          image: docker.io/mezzeddine/consumerbp:v00
+          #image: docker.io/mezzeddine/consumerbp:v00   # that is ok 5 ms bp
+          image: docker.io/mezzeddine/consumerbpdb:v0
+
 
 
 

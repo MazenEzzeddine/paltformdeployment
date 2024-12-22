@@ -34,9 +34,9 @@
                     #image: docker.io/mezzeddine/controller750more:v5
                     #image: docker.io/mezzeddine/controlleralgo1750:v1
                     #image: docker.io/mezzeddine/controlleralgo2postgres:v0
-                    #image: docker.io/mezzeddine/controller5taxi:v0
+                    image: docker.io/mezzeddine/controller5taxi:v0
 
-                    image: docker.io/mezzeddine/controller7p:v0
+                    #image: docker.io/mezzeddine/controller7p:v0
 
 
 
