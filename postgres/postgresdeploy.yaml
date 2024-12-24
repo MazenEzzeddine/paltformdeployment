@@ -21,6 +21,13 @@ spec:
         - name: postgresql
           image: postgres:14
           imagePullPolicy: "IfNotPresent"
+          resources:
+            limits:
+              memory: 2000Mi
+              cpu: 1000m
+            requests:
+              memory: 2000Mi
+              cpu: 1000m
           env:
             - name: POSTGRES_DB
               value: northwind
