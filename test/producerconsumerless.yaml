@@ -11,11 +11,11 @@ spec:
       #image: docker.io/mezzeddine/producerftest:v0  #produceroldgrpc:v1
       #image: docker.io/mezzeddine/omgrpc:v3
       #image: docker.io/mezzeddine/producertaxigrpc:v1
-      #image: docker.io/mezzeddine/produceroldgrpc:v1
+      image: docker.io/mezzeddine/produceroldgrpc:v1
       #image: docker.io/mezzeddine/taxibatch40is:v0  #timely producer
       #image: docker.io/mezzeddine/taxi2h1640:v3   #timely producer
       #image: docker.io/mezzeddine/taxi2h40:v0   #timely producer
-      image: docker.io/mezzeddine/taxi200:v0   #producer taxi 250 no z
+      #image: docker.io/mezzeddine/taxi200:v0   #producer taxi 250 no z
 
 
 
@@ -68,7 +68,9 @@ spec:
           #image: docker.io/mezzeddine/consumerbp:v00   # that is ok 5 ms bp
           #image: docker.io/mezzeddine/consumerbpdb:v0   #  binpack ok
           #image: docker.io/mezzeddine/consumerstickytest:v0
-          image: docker.io/mezzeddine/consumerdbnoread:v0
+          #image: docker.io/mezzeddine/consumerdbnoread:v0
+          image: docker.io/mezzeddine/consumertestdbsticky:v0
+
 
 
           ports:
@@ -77,10 +79,10 @@ spec:
           resources:
             limits:
               memory: 1000Mi
-              cpu: 1000m
+              cpu: 500m #350m
             requests:
               memory: 1000Mi
-              cpu: 1000m
+              cpu: 500m #350m
           env:
             - name: BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9092

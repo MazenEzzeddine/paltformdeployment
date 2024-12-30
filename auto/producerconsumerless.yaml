@@ -68,7 +68,9 @@ spec:
           #image: docker.io/mezzeddine/consumerbp:v00   # that is ok 5 ms bp
           #image: docker.io/mezzeddine/consumerbpdb:v0   #  binpack ok
           #image: docker.io/mezzeddine/consumerstickytest:v0
-          image: docker.io/mezzeddine/consumerdbnoread:v0
+          #image: docker.io/mezzeddine/consumerdbnoread:v0
+          image: docker.io/mezzeddine/consumertestdbsticky:v0
+
 
 
           ports:
@@ -77,10 +79,10 @@ spec:
           resources:
             limits:
               memory: 1000Mi
-              cpu: 1000m
+              cpu: 100m
             requests:
               memory: 1000Mi
-              cpu: 1000m
+              cpu: 100m
           env:
             - name: BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9092
