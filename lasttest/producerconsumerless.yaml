@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: workload
+  name: workload
+spec:
+  restartPolicy: Never
+  containers:
+    - name: java-kafka-producer
+      #image: docker.io/mezzeddine/producerftest:v0  #produceroldgrpc:v1
+      #image: docker.io/mezzeddine/omgrpc:v3
+      #image: docker.io/mezzeddine/producertaxigrpc:v1
+      #image: docker.io/mezzeddine/produceroldgrpc:v1
+      #image: docker.io/mezzeddine/taxibatch40is:v0  #timely producer
+      #image: docker.io/mezzeddine/taxi2h1640:v3   #timely producer
+      #image: docker.io/mezzeddine/taxi2h40:v0   #timely producer
+      image: docker.io/mezzeddine/taxi200:v0   #producer taxi 250 no z
+
+
+
+
+
+      env:
+        - name: BOOTSTRAP_SERVERS
+          value: my-cluster-kafka-bootstrap:9092
+        - name: TOPIC
+          value: testtopic1
+        - name: DELAY_MS
+          value: "1000"
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: PRODUCER_ACKS
+          value: "0"
+        - name: ADDITIONAL_CONFIG
+          value: |
+                retries=100
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: latency
+  name: latency
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: latency
+  template:
+    metadata:
+      labels:
+        app: latency
+    spec:
+      containers:
+        - name: latency
+          #image: docker.io/mezzeddine/consumerteshrine:v0
+          #image: docker.io/mezzeddine/consumerteshrine:v1  #sk
+          #image: docker.io/mezzeddine/consumerrebalgo1:v1 #consumercustomer:v0
+          #image: docker.io/mezzeddine/consumercustomer:v0  #bp
+          #image: docker.io/mezzeddine/consumer500sticky:v0
+          #image: docker.io/mezzeddine/consumer2000sticky:v1
+          #image: docker.io/mezzeddine/consumer2000sbp:v1
+          #image: docker.io/mezzeddine/consumer750bp:v0
+
+          #image: docker.io/mezzeddine/consumerpostgresvar:v6
+          #image: docker.io/mezzeddine/consumerpostgresvar:vv0
+          #image: docker.io/mezzeddine/consumerbp:v00   # that is ok 5 ms bp
+          #image: docker.io/mezzeddine/consumerbpdb:v0   #  binpack ok
+          #image: docker.io/mezzeddine/consumerstickytest:v0
+          #image: docker.io/mezzeddine/consumerdbnoread:v0
+          #image: docker.io/mezzeddine/consumertestdbsticky:v0
+          image: docker.io/mezzeddine/varconsumerparam:v0  #consumertestdbsticky:v0
+
+
+
+
+          ports:
+          - containerPort: 8080
+            name: brom
+          resources:
+            limits:
+              memory: 1000Mi
+              cpu: 1000m #100m
+            requests:
+              memory: 1000Mi
+              cpu: 1000m #100m
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: my-cluster-kafka-bootstrap:9092
+            - name: TOPIC
+              value: testtopic1
+            - name: GROUP_ID
+              value: testgroup1
+            - name: SLEEP
+              value: "3"
+            - name: MESSAGE_COUNT
+              value: "1000000"
+            - name: ADDITIONAL_CONFIG
+              value: |
+                max.poll.records=100
+
