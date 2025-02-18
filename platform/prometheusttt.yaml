@@ -1,0 +1,111 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-server
+  labels:
+    app: strimzi
+rules:
+  - apiGroups: [""]
+    resources:
+      - nodes
+      - nodes/proxy
+      - services
+      - endpoints
+      - pods
+    verbs: ["get", "list", "watch"]
+  - apiGroups:
+      - extensions
+    resources:
+      - ingresses
+    verbs: ["get", "list", "watch"]
+  - nonResourceURLs: ["/metrics"]
+    verbs: ["get"]
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus-server
+  labels:
+    app: strimzi
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-server
+  labels:
+    app: strimzi
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus-server
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-server
+    namespace: default
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+  labels:
+    app: strimzi
+spec:
+  replicas: 1
+  # scrapeTimeout: "30s"  
+  minReadySeconds: 3
+  
+  containers:
+    - name: prometheus
+      # args:
+      #   - --log.level=debug
+      # livenessProbe:
+      #   periodSeconds : 3
+      #   timeoutSeconds: 10
+      #   failureThreshold: 1
+      #   initialDelaySeconds: 10
+        
+
+        # tcpSocket:
+        #   port: 80
+      readinessProbe:
+        timeoutSeconds: 1
+        periodSeconds : 3
+        failureThreshold: 1
+        initialDelaySeconds: 3
+  serviceAccountName: prometheus-server
+  podMonitorSelector:
+    matchLabels:
+      app: strimzi
+  serviceMonitorSelector: {}
+  retention: 2h
+  # resources:
+  #   requests:
+  #     memory: 2000Mi
+  #     cpu: 2000m
+  # storage:
+  #   volumeClaimTemplate:
+  #     spec:
+  #       resources:  
+  #        requests:
+  #         storage: 20Gi
+  securityContext:
+    fsGroup: 0
+    runAsNonRoot: false
+    runAsUser: 0
+  enableAdminAPI: false
+  ruleSelector:
+    matchLabels:
+      role: alert-rules
+      app: strimzi
+  alerting:
+    alertmanagers:
+    - namespace: default
+      name: alertmanager
+      port: alertmanager
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: prometheus-additional.yaml
+---

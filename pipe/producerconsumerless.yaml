@@ -151,3 +151,21 @@ spec:
             - name: ADDITIONAL_CONFIG
               value: |
                 max.poll.records=100
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: grpcassignmentserver
+  name: controllerandscaler
+spec:
+  restartPolicy: Never
+  containers:
+    - name: controllerandscaler
+      image: docker.io/mezzeddine/testcontrollerinter:v0  #controller10fd3:v0
+      ports:
+        - containerPort: 5002
+      env:
+        - name: BOOTSTRAP_SERVERS
+          value: my-cluster-kafka-bootstrap:9092

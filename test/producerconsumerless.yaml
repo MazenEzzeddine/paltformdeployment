@@ -79,10 +79,10 @@ spec:
           resources:
             limits:
               memory: 1000Mi
-              cpu: 500m #350m
+              cpu: 200m #350m #500m #350m
             requests:
               memory: 1000Mi
-              cpu: 500m #350m
+              cpu: 200m #350m #350m 500m
           env:
             - name: BOOTSTRAP_SERVERS
               value: my-cluster-kafka-bootstrap:9092

@@ -11,13 +11,7 @@
                     #image: docker.io/mezzeddine/autocontroller:v6
                     #image: docker.io/mezzeddine/autocontroller:v7   this
                     #image: docker.io/mezzeddine/controllertest5:v0
-                    #image: docker.io/mezzeddine/controllerwaitcg:v1
-
-                    #image: docker.io/mezzeddine/controllerwaitcg:v3
-                    #image: docker.io/mezzeddine/controllerwaitcg:va
-                    image: docker.io/mezzeddine/controllerwaitcg:vb
-
-
+                    image: docker.io/mezzeddine/controllerwaitcg:va
 
 
 
@@ -42,11 +36,11 @@
                     - name: CONSUMER_GROUP
                       value: testgroup1
                     - name: WARMUP_TIME
-                      value: "30000"
+                      value: "240000"
                     - name: FUP
                       value: "0.9"
                     - name: FDOWN
-                      value: "0.4"
+                      value: "0.3"
 
 
 ---
