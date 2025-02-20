@@ -93,7 +93,7 @@ spec:
             - name: GROUP_ID
               value: testgroup1
             - name: SLEEP
-              value: "5"
+              value: "0"
             - name: MESSAGE_COUNT
               value: "1000000"
             - name: ADDITIONAL_CONFIG
