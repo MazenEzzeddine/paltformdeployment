@@ -35,7 +35,7 @@
                     - name: CONSUMER_GROUP
                       value: testgroup1
                     - name: WARMUP_TIME
-                      value: "180000"
+                      value: "60000"
                     - name: FUP
                       value: "0.9"
                     - name: FDOWN
