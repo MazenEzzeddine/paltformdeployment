@@ -1,0 +1,149 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: workload
+  name: producer-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: workload
+  template:
+    metadata:
+      labels:
+        app: workload
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: java-kafka-producer
+          image: docker.io/mezzeddine/produceroldgrpc:v4
+          ports:
+            - containerPort: 5002
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: my-cluster-kafka-bootstrap:9092
+            - name: TOPIC
+              value: testtopic1
+            - name: DELAY_MS
+              value: "1000"
+            - name: LOG_LEVEL
+              value: "INFO"
+            - name: PRODUCER_ACKS
+              value: "0"
+            - name: ADDITIONAL_CONFIG
+              value: |
+                retries=100
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: latency
+  name: latency
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: latency
+  template:
+    metadata:
+      labels:
+        app: latency
+    spec:
+      containers:
+        - name: latency
+          image: docker.io/mezzeddine/consumerstick:v0
+          ports:
+            - containerPort: 8080
+              name: brom
+          resources:
+            limits:
+              memory: 1000Mi
+              cpu: 1000m #100m
+            requests:
+              memory: 1000Mi
+              cpu: 1000m #100m
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: my-cluster-kafka-bootstrap:9092
+            - name: TOPIC
+              value: testtopic1
+            - name: GROUP_ID
+              value: testgroup1
+            - name: SLEEP
+              value: "5"
+            - name: MESSAGE_COUNT
+              value: "1000000"
+            - name: ADDITIONAL_CONFIG
+              value: |
+                max.poll.records=100
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: grpcassignmentserver
+  name: controllerandscaler
+spec:
+  restartPolicy: Never
+  containers:
+    - name: controllerandscaler
+      #image: docker.io/mezzeddine/controllerwaitcg:vb
+      #image: docker.io/mezzeddine/controllerarrivals:v0
+      image: docker.io/mezzeddine/thecontrollerproducer:v0
+
+      ports:
+        - containerPort: 5002
+      env:
+        - name: BOOTSTRAP_SERVERS
+          value: my-cluster-kafka-bootstrap:9092
+        - name: NB_Partitions
+          value: "5"
+        - name: DECISION_INTERVAL
+          value: "1000"
+        - name: INITIAL_REPLICAS
+          value: "5"
+        - name: WSLA
+          value: "0.5"
+        - name: REB_TIME
+          value: "0.05"
+        - name: TOPIC
+          value: testtopic1
+        - name: CONSUMER_GROUP
+          value: testgroup1
+        - name: WARMUP_TIME
+          value: "30000"
+        - name: FUP
+          value: "0.9"
+        - name: FDOWN
+          value: "0.4"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: assignmentservice #arrivalservice #assignmentservice
+spec:
+  selector:
+    app: grpcassignmentserver
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arrivalservice #assignmentservice
+spec:
+  selector:
+    app: workload
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002

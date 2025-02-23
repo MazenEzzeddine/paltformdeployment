@@ -16,11 +16,6 @@ spec:
       #image: docker.io/mezzeddine/taxi2h1640:v3   #timely producer
       #image: docker.io/mezzeddine/taxi2h40:v0   #timely producer
       image: docker.io/mezzeddine/taxi200:v0   #producer taxi 250 no z
-
-
-
-
-
       env:
         - name: BOOTSTRAP_SERVERS
           value: my-cluster-kafka-bootstrap:9092
